@@ -72,6 +72,8 @@ jobs:
 
         echo "<p><a href=\"testresults/${{vars.MY_APP_VERSION}}/index.html\">${{vars.MY_APP_VERSION}} Test Results</a><br>" >> index.html
 
+        rm -rf temp
+
     - name: Commit and push
       run: |
         git config --local user.email "action@github.com"
