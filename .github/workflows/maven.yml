@@ -30,7 +30,7 @@ jobs:
 
     - name: Test with Maven
       run: | 
-        mvn versions:set -DnewVersion= ${{env.new_version}}
+        mvn versions:set -DnewVersion=${{env.new_version}}
         mvn clean test
       working-directory: my-app
 
