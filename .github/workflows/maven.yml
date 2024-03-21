@@ -58,17 +58,26 @@ jobs:
         token: ${{ secrets.PAT }} 
 
 
-    - name: Download production artifacts
+    - name: Download test result artifacts for jacoco
       uses: actions/download-artifact@v4.1.4
       with:
         name: packaged-artifacts
         path: temp
 
-    - name: delete me
+    - name: Update test results
       run: |
-        pwd 
-        ls -la
-        echo "-----"
-        ls -la temp
+        mkdir testresults/${{vars.MY_APP_VERSION}}
+        
+        cp -r ../../temp/site/jacoco/* testresults/${{vars.MY_APP_VERSION}}/.
+
+        echo "<p><a href=\"testresults/${{vars.MY_APP_VERSION}}/index.html\">${{vars.MY_APP_VERSION}} Test Results</a><br>" >> index.html
+
+    - name: Commit and push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Update test results ${{vars.MY_APP_VERSION}}" -a
+        git push
 
 
