@@ -25,4 +25,4 @@ jobs:
       uses: actions/upload-artifact@v4.3.1
       with:
         name: packaged-artifacts
-        path: target/**
+        path: my-app/target/**
