@@ -66,6 +66,6 @@ jobs:
     - name: delete me
       run: |
         pwd 
-        echo ls -la
+        ls -la
 
 
