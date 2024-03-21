@@ -27,9 +27,7 @@ jobs:
         VERSION_PARTS[2]=$((VERSION_PARTS[2] + 1))
         new_version="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.${VERSION_PARTS[2]}"
         echo "new_version=$new_version" >> $GITHUB_ENV
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      
     - name: Test with Maven
       run: | 
         mvn versions:set -DnewVersion=${{env.new_version}}
@@ -46,4 +44,4 @@ jobs:
       run: |
         gh variable set MY_APP_VERSION --body "${{env.new_version}}"
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.PAT }}
