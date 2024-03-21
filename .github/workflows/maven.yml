@@ -45,3 +45,27 @@ jobs:
         gh variable set MY_APP_VERSION --body "${{env.new_version}}"
       env:
         GH_TOKEN: ${{ secrets.PAT }}
+
+  publish-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout pages repo
+      uses: actions/checkout@v4
+      with:
+        repository: devopselvis/java-example-with-jacoco-and-tests-test-results
+        token: ${{ secrets.PAT }} 
+
+
+    - name: Download production artifacts
+      uses: actions/download-artifact@v4.1.4
+      with:
+        name: packaged-artifacts
+
+    - name: delete me
+      run: |
+        pwd 
+        echo ls -la
+
+
