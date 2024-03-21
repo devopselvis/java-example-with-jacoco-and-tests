@@ -68,7 +68,7 @@ jobs:
       run: |
         mkdir testresults/${{vars.MY_APP_VERSION}}
         
-        cp -r ../../temp/site/jacoco/* testresults/${{vars.MY_APP_VERSION}}/.
+        cp -r temp/site/jacoco/* testresults/${{vars.MY_APP_VERSION}}/.
 
         echo "<p><a href=\"testresults/${{vars.MY_APP_VERSION}}/index.html\">${{vars.MY_APP_VERSION}} Test Results</a><br>" >> index.html
 
